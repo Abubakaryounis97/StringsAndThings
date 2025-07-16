@@ -14,10 +14,27 @@ public class StringsAndThings {
      *           countYZ("day fez"); // Should return 2
      *           countYZ("day fyyyz"); // Should return 2
      */
-    public Integer countYZ(String input){
-        return null;
-    }
+    public Integer countYZ(String input)
+    {
+        int length= input.length(); // finding the total length of the string
+        int count = 0; // Initialize a counter to count the number of words ending with 'y' or 'z'
+        char charAT = input.charAt(i); // Get the  character of the string
 
+        for (int i = 0; i < length; i++) 
+        { // Loop through each character in the string
+            if (i == length - 1 || !Character.isLetter(input.charAt(i + 1))) 
+            { // Check if it's the last character or not followed by a letter
+                    if (charAT == 'y' || charAT == 'z') 
+                    { // Check if the character is 'y' or 'z'
+                    if (i == input.length() - 1 || !Character.isLetter(input.charAt(i + 1)))
+                        {    count++; // Increment the counter
+                        }
+                    }
+            } 
+        return count; // return final value of count
+
+        }
+    }
     /**
      * Given two strings, base and remove, return a version of the base string where all instances of the remove string have
      * been removed (not case sensitive). You may assume that the remove string is length 1 or more.
@@ -27,9 +44,29 @@ public class StringsAndThings {
      *           removeString("Hello there", "e") //  Should return "Hllo thr"
      *           removeString("Hello there", "x") // Should return "Hello there"
      */
-    public String removeString(String base, String remove){
-        return null;
+    public String removeString(String base, String remove)
+    {  
+        int i = 0;
+        int baseLength = base.length();
+        int removeLength = remove.length();
+        String string = ""; // result string
+    
+  
+    while (i < baseLength) 
+    {
+        // Check if the substring starting at i matches the remove string (case-insensitive)
+            if (i + removeLength <= baseLength && baseLower.substring(i, i + removeLength).equals(removeLower)) 
+            {
+            i += removeLength;  // skip this remove substring
+            } 
+            else {
+            string += base.charAt(i);  // add current char to result
+            i++;
+            }
     }
+    
+    return string;
+}
 
     /**
      * Given a string, return true if the number of appearances of "is" anywhere in the string is equal
@@ -40,7 +77,25 @@ public class StringsAndThings {
      *           containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
     public Boolean containsEqualNumberOfIsAndNot(String input){
-        return null;
+        int countIs = 0;
+        int countNot = 0;
+        String lowerInput = input.toLowerCase();
+        Int length = lowerInput.length();
+        Boolean result;
+
+        for (int i = 0; i < length - 1; i++) 
+            { if (lowerInput.substring(i, i + 2).equals("is")) 
+            { // Check for "is"
+                countIs++;
+            } else if (lowerInput.substring(i, i + 3).equals("not")) 
+            { // Check for "not"
+                countNot++;
+            } 
+            result = countIs == countNot; // Compare counts
+        }
+        
+
+        return result;
     }
 
     /**
@@ -50,8 +105,24 @@ public class StringsAndThings {
      *           gHappy("xxgxx") // Should return  false
      *           gHappy("xxggyygxx") // Should return  false
      */
-    public Boolean gIsHappy(String input){
-        return null;
+    public Boolean gIsHappy(String input)
+    {
+        String lowerInput = input.toLowerCase();
+        int length = lowerInput.length();
+        
+
+            for (int i = 0; i < length; i++) 
+            {
+                if (lowerInput.charAt(i) == 'g') 
+            {   if ( lowerInput.charAt(i - 1) != 'g' && lowerInput.charAt(i + 1) != 'g') 
+                { // Check if 'g' is not happy
+                    return false; // Return false if any 'g' is not happy
+                } 
+            
+            }
+        // Return true if all 'g's are happy
+        }
+         return true;
     }
 
 
@@ -63,6 +134,16 @@ public class StringsAndThings {
      *            countTriple("a") // Should return 0
      */
     public Integer countTriple(String input){
-        return null;
+        int count = 0; // Initialize a counter to count the number of triples
+        int length = input.length(); // Get the length of the input string
+        string lowerInput = input.toLowerCase(); // Convert input to lowercase for case-insensitive comparison
+        for (int i = 0; i < length-2; i++) 
+        { // Loop through the string, stopping 2 characters before the end
+            if (lowerInput.charAt(i) == lowerInput.charAt(i + 1) && lowerInput.charAt(i) == lowerInput.charAt(i + 2)) 
+            { // Check if the current character is equal to the next two characters
+                count++; // Increment the counter if a triple is found
+            }
+        }
+        return count;
     }
 }
